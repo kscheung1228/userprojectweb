@@ -28,6 +28,7 @@ function RegistrationForm() {
         const response = await axios.post('http://127.0.0.1:8000/dj-rest-auth/registration/', formData);
         setMessage(response.data);
         setError('');
+        setAuthToken(response.data.access,response.data.refresh)
         // Handle the response, e.g., display a success message or redirect to the login page
       } catch (error) {
         // Handle the error, e.g., display an error message

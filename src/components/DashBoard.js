@@ -21,7 +21,7 @@ function Dashboard() {
 
   // Fetch data on component mount
   useEffect(() => {
-    fetchData().then(output=>console.log(output));
+    fetchData().then(output=>console.log(output.data));
   }, []);
 
   // Render the dashboard component
