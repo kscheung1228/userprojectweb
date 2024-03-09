@@ -9,9 +9,16 @@ export const api = axios.create(
     }
 )
 
+export const apinointercept = axios.create(
+  {
+      baseURL:BASE_URL,
+      timeout:5000
+  }
+)
+
 api.interceptors.request.use(
   (config) => {
-    if (config.url!=='/dj-rest-auth/login/') {
+    if (config.url!=='/dj-rest-auth/login/' ) {
       console.log("requestinterceptors")
       const token = localStorage.getItem('jwt');
       if (token) {

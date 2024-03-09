@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { setAuthToken, api } from './api';
+import { setAuthToken, apinointercept } from './api';
 
 
 function RegistrationForm() {
@@ -25,7 +25,7 @@ function RegistrationForm() {
   
       try {
         // Make a POST request to the registration endpoint of your API
-        const response = await axios.post('http://127.0.0.1:8000/dj-rest-auth/registration/', formData);
+        const response = await apinointercept.post('/dj-rest-auth/registration/', formData);
         setMessage(response.data);
         setError('');
         setAuthToken(response.data.access,response.data.refresh)
