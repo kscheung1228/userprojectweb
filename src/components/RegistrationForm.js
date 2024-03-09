@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { setAuthToken, api } from './api';
+
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
@@ -9,7 +11,8 @@ function RegistrationForm() {
       email: ''
     });
 
-   
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState();
   
     // Handle form input changes
     const handleChange = (e) => {
@@ -23,11 +26,14 @@ function RegistrationForm() {
       try {
         // Make a POST request to the registration endpoint of your API
         const response = await axios.post('http://127.0.0.1:8000/dj-rest-auth/registration/', formData);
-  
+        setMessage(response.data);
+        setError('');
         // Handle the response, e.g., display a success message or redirect to the login page
       } catch (error) {
         // Handle the error, e.g., display an error message
-        console.log(error)
+        console.error(error);
+        setMessage('');
+        setError(JSON.stringify(error.response.data));
       }
     };
   
@@ -39,6 +45,10 @@ function RegistrationForm() {
         <input type="password" name="password2" value={formData.password2} onChange={handleChange} placeholder="Password2" />
         <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
         <button type="submit">Register</button>
+            <div>
+                {error && <p>{JSON.stringify(error)}</p>}
+                {message && <p>{JSON.stringify(message)}</p>}
+            </div>
       </form>
     );
   }
