@@ -36,7 +36,7 @@ function LoginForm() {
         setAuthToken(response.data.access,response.data.refresh)
       } catch (error) {
         // Handle the error, e.g., display an error message
-        console.error(error);
+        console.error("loginerror",error);
         setMessage('');
         setError(JSON.stringify(error.response.data));
       }
