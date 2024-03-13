@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { setAuthToken, api } from './api';
+// import axios from 'axios';
+import { api } from './api';
 
 
 function Dashboard() {
