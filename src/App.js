@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import Dashboard from './components/DashBoard';
 import PasswordResetForm from './components/PasswordReset'
 import VerifyEmail from './components/VerifyEmail';
+import PasswordResetConfirmForm from './components/PasswordResetConfirm';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/dj-rest-auth/login" element={<LoginForm />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/dj-rest-auth/password/reset" element={<PasswordResetForm />} />
+        <Route path="password-reset/confirm/:Uid/:Token/" element={<PasswordResetConfirmForm />} />
         <Route path="/dj-rest-auth/registration/account-confirm-email/:Key" element={<VerifyEmail />} />
       </Routes>
     </Router>
