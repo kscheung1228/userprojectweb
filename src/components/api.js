@@ -1,6 +1,5 @@
 import axios from "axios";
-import { wrapper } from 'axios-cookiejar-support';
-import { CookieJar } from 'tough-cookie';
+
 
 const BASE_URL = "http://127.0.0.1:8000"
 

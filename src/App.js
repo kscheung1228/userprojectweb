@@ -8,6 +8,8 @@ import PasswordResetForm from './components/PasswordReset'
 import VerifyEmail from './components/VerifyEmail';
 import PasswordResetConfirmForm from './components/PasswordResetConfirm';
 import TestcsrfForm from './components/Testcsrf';
+import ResendVerifyEmailForm from './components/ResendVerifyEmail';
+
 function App() {
   return (
     <Router>
@@ -19,6 +21,7 @@ function App() {
         <Route path="password-reset/confirm/:Uid/:Token/" element={<PasswordResetConfirmForm />} />
         <Route path="/dj-rest-auth/registration/account-confirm-email/:Key" element={<VerifyEmail />} />
         <Route path="csrf/:Uid/:Token/" element={<TestcsrfForm />} />
+        <Route exact path="/resendemail" element={<ResendVerifyEmailForm />} />
       </Routes>
     </Router>
   );
