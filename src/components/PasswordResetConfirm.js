@@ -1,5 +1,5 @@
 import React, { useState , useEffect } from 'react';
-import { apinointercept } from './api';
+import { apicsrf, apinointercept } from './api';
 import { useLocation, useParams } from 'react-router-dom';
 
 
@@ -34,6 +34,7 @@ function PasswordResetConfirmForm() {
     const handleChange = (e) => {
         // e.target.name = e.target.value
       setFormData({ ...formData, [e.target.name]: e.target.value });
+      
       console.log ("handlechange",formData, typeof(formData))
     };
 
@@ -44,7 +45,7 @@ function PasswordResetConfirmForm() {
         console.log("formdata",formData)
       try {
         // Make a POST request to the login endpoint of your API to obtain the JWT token
-        const response = await apinointercept.post('/password-reset/confirm/', formData);
+        const response = await apinointercept.post('/dj-rest-auth/password/reset/confirm/', formData);
         setMessage(response.data);
         setError('');
         // Handle the response, e.g., store the JWT token in local storage or state
@@ -62,8 +63,11 @@ function PasswordResetConfirmForm() {
     // Render the login form
     return (
       <form onSubmit={handleSubmit}>
-        <input type="password" name="new_password1" value={formData.username} onChange={handleChange} placeholder="Password" />
-        <input type="password" name="new_password2" value={formData.password} onChange={handleChange} placeholder="Repeat Password" />
+        <input type="password" name="new_password1" value={formData.new_password1} onChange={handleChange} placeholder="Password" />
+        <input type="password" name="new_password2" value={formData.new_password2} onChange={handleChange} placeholder="Repeat Password" />
+        <input type="hidden" name="uid" value={formData.uid}/>
+        <input type="hidden" name="token" value={formData.token} />
+        
         <button type="submit">Reset Password</button>
         <div>
                 {error && <p>{JSON.stringify(error)}</p>}

@@ -1,20 +1,58 @@
 import axios from "axios";
+import { wrapper } from 'axios-cookiejar-support';
+import { CookieJar } from 'tough-cookie';
 
 const BASE_URL = "http://127.0.0.1:8000"
 
 export const api = axios.create(
     {
         baseURL:BASE_URL,
-        timeout:5000
+        timeout:5000,
+
     }
+)
+
+export const apicsrf = axios.create(
+  {
+    
+      baseURL:BASE_URL,
+      timeout:5000,
+      withCredentials: true,
+      withXSRFToken:true,
+      xsrfHeaderName: 'X-CSRFToken',
+      xsrfCookieName: 'csrftoken',
+      credentials:'include',
+      headers: {
+        'Access-Control-Allow-Credentials': true,
+        // 'MyCustomHeader2': '2'
+    }
+      
+  }
 )
 
 export const apinointercept = axios.create(
   {
       baseURL:BASE_URL,
-      timeout:5000
+      timeout:5000,
   }
 )
+
+  
+
+// apicsrf.interceptors.request.use(
+//     (config) => {
+//       if (config.url!=='/dj-rest-auth/login/' ) {
+        
+//         const cookies = Cookies.get('X-CSRFTOKEN')     
+//         console.log("apicsrfinterceptor",cookies)     
+//         if (cookies) {
+//           config.headers.common['X-CSRFToken'] = cookies
+//       }
+//       return config;
+//     }
+//   },
+//     (error) => Promise.reject(error)
+//   );
 
 api.interceptors.request.use(
   (config) => {
